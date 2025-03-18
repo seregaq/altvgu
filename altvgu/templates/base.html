@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    {% load university_tags %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Главная{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'university/css/styles.css' %}">
+
+</head>
+<body>
+{% get_categories as categories %}
+
+<header class="categories-header">
+    <nav>
+        <ul class="categories-menu">
+            {% for cat in categories %}
+                <li><a href="#">{{ cat.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>
+
+
+    <!-- Логотип -->
+    <header>
+        <div class="logo-container">
+            <img src="{% static 'university/images/logo.jpg' %}" alt="Логотип" class="logo">
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'about' %}">О сайте</a></li>
+                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                <li><a href="{% url 'login' %}">Войти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Университет</p>
+    </footer>
+
+</body>
+</html>

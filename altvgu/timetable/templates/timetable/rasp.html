@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+{% load static %}
+{% load timetable_tags %}  <!-- Подключаем кастомные теги -->
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание группы</title>
+    <link rel="stylesheet" href="{% static 'timetable/css/style.css' %}">
+</head>
+<body>
+
+<!-- Логотип -->
+<div class="logo-container">
+    <img src="{% static 'timetable/img/logo.jpg' %}" alt="Логотип университета" class="logo">
+</div>
+
+<div class="container">
+    <h1>Расписание группы</h1>
+    <p>Группа №: {{ group_id }}</p>
+
+    {% get_schedule group_id as schedule %}  <!-- Вызываем Simple Tag -->
+
+    {% for lesson in schedule %}
+        <p>{{ forloop.counter }}. {{ lesson }}</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

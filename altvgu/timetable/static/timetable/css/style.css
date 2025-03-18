@@ -1,0 +1,104 @@
+/* Общий стиль страницы */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #f8f8f8, #e3e3e3);
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Контейнер логотипа */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Анимация логотипа при наведении */
+.logo-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Логотип */
+.logo {
+    width: 120px; /* Настройте размер */
+    height: auto;
+    display: block;
+}
+
+/* Карточка расписания */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin-top: 60px;
+    transition: all 0.3s ease-in-out;
+    animation: popIn 0.8s ease-out;
+}
+
+/* Анимация карточки */
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Добавляем эффект при наведении */
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Заголовок */
+h1 {
+    color: #222;
+    font-size: 26px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Текст расписания */
+p {
+    font-size: 18px;
+    color: #444;
+    margin: 10px 0;
+    transition: color 0.3s;
+}
+
+/* Эффект изменения цвета при наведении */
+p:hover {
+    color: #ff4b5c;
+}
+

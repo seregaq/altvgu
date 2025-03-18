@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--         <title>{{title}}</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<ul>-->
+<!--<li><a href="{% url 'home' %}">Главная</a></li>-->
+<!--{% for m in menu %}-->
+<!--{% if not forloop.last %}<li>{% else %}<li-->
+<!--class="last">{% endif %}-->
+<!--         <a href="{% url m.url_name %}">{{m.title}}</a>-->
+<!--</li>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+
+<!--<h1>{{title}}</h1>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+{% block title %}О сайте{% endblock %}
+
+{% block content %}
+    <h1>{{ title|capfirst }}</h1>
+    <p>Здесь вы найдете информацию о нашем университете, преподавателях и учебных программах.</p>
+{% endblock %}
