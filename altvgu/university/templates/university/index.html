@@ -12,9 +12,20 @@
         <li>
             <strong>{{ post.title }}</strong> – {{ post.content|upper }}
         </li>
+
+        <!-- Вывод тегов -->
+        <p>
+            <strong>Теги:</strong>
+            {% for tag in post.tags.all %}
+                <span class="tag">#{{ tag.name }}</span>
+            {% empty %}
+                <span>Нет тегов</span>
+            {% endfor %}
+        </p>
+
         <p class="link-read-post"><a href="{{ post.get_absolute_url }}">Читать пост</a></p>
     {% empty %}
         <p>Новостей пока нет.</p>
     {% endfor %}
-</ul>
+    </ul>
 {% endblock %}
