@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Tag, News, Category
+from django.utils.safestring import mark_safe
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -19,7 +20,7 @@ class TagFilter(admin.SimpleListFilter):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'content','actual', 'category', 'brief_info', 'person_info')
+    list_display = ('id', 'title', 'content','actual','post_photo', 'category', 'person_info')
     list_display_links = ('id', 'title')
     ordering = ['title']
     list_editable = ('actual','category', 'content')
@@ -28,9 +29,11 @@ class NewsAdmin(admin.ModelAdmin):
     list_filter = [TagFilter, 'actual']
 
 
-    @admin.display(description="Краткое описание")
-    def brief_info(self, news: News):
-        return f"Описание {len(news.content)} символов."
+    @admin.display(description="Изображение")
+    def post_photo(self, news: News):
+        if news.photo:
+            return mark_safe(f"<img src = '{news.photo.url}'width = 50 > ")
+        return "Без фото"
 
     @admin.display(description="Персоналии")
     def person_info(self, news: News):

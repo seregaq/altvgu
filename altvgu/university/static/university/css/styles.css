@@ -213,3 +213,35 @@ footer {
         transform: translateX(0);
     }
 }
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination .current-page {
+    padding: 5px 10px;
+    background: #0056b3;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}

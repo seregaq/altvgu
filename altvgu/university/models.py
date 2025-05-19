@@ -44,6 +44,9 @@ class Author(models.Model):
     def __str__(self):
         return self.bio
 
+class UploadFiles(models.Model):
+    file = models.FileField(upload_to='uploads_model')
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -71,6 +74,7 @@ class News(models.Model):
         default=False,
         verbose_name="Актуальность"
     )
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d/",default=None, blank=True, null=True,verbose_name="Фото")
     slug = models.SlugField(unique=True, verbose_name="URL", allow_unicode=True)
 
     def get_absolute_url(self):

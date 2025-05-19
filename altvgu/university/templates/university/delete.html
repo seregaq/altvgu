@@ -1,0 +1,11 @@
+{% extends "university/base.html" %}
+
+{% block content %}
+  <h2>Удаление статьи: "{{ post.title }}"</h2>
+  <p>Вы уверены, что хотите удалить эту статью?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+    <a href="{{ post.get_absolute_url }}">Отмена</a>
+  </form>
+{% endblock %}

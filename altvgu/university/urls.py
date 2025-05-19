@@ -1,22 +1,28 @@
-from django.urls import path,re_path,register_converter
-from university import views,converters
+from django.urls import path, re_path, register_converter
+from . import views, converters
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 register_converter(converters.FourDigitYearConverter, "year4")
 register_converter(converters.DateConverter, 'date')
 
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('about/', views.about, name='about'),
+    path('', views.HomePage.as_view(), name='home'),
+    path('about/', views.AboutPage.as_view(), name='about'),
+    path('contact/', views.ContactPage.as_view(), name='contact'),
+    path('addpage/', views.AddNews.as_view(), name='addpage'),
+    path('edit/<slug:post_slug>/', views.EditNews.as_view(), name='edit_news'),
+    path('delete/<slug:post_slug>/', views.DeleteNews.as_view(), name='delete_news'),
+    path('post/<slug:post_slug>/', views.ShowNews.as_view(), name='post'),
+    path('news/<slug:post_slug>/', views.ShowNews.as_view(), name='news_detail'),
+    path("feedback/", views.FeedbackView.as_view(), name="feedback"),
     path('cats/<int:dep_id>/', views.department, name='dep_id'),
-    path("feedback/", views.feedback, name="feedback"),
-    path('cats/<slug:deps>/',views.department_by_slug, name='deps'),
+    path('cats/<slug:deps>/', views.department_by_slug, name='deps'),
     re_path(r'^archive/(?P<year>[0-9]{4})/', views.archive, name='archive'),
-    path('archive/<date:dt>/', views.archive_date, name="date"),
-    path('contact/', views.contact, name='contact'),
+    path('archive/<date:dt>/', views.archive_date, name='date'),
     path('login/', views.login, name='login'),
-    path('post/<slug:post_slug>/', views.show_post,name='post'),
-    path('news/<slug:post_slug>/', views.show_post, name='news_detail'),
-
-
-
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

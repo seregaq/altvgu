@@ -5,13 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9e312b1-81e5-48ba-abbf-c0a325cb8a92" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/university/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/altvgu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/altvgu/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/altvgu/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/altvgu/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/templates/admin/base_siшte.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/addpage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/static/university/css/admin_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/static/university/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/static/university/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/templates/university/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/templates/university/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/templates/university/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +53,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Dev/altvgu/venv/Scripts/python.exe&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/manui/OneDrive/Desktop/тг 6 сем/ио м/jorik.py&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
@@ -54,6 +63,9 @@
       <recent name="C:\Python\Projects\django\altvgu\university\static\university\images" />
       <recent name="C:\Python\Projects\django\altvgu\timetable\static\timetable\img" />
       <recent name="C:\Python\Projects\django\altvgu\university\templates\university" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Dev\altvgu\altvgu" />
     </key>
   </component>
   <component name="RunManager">
@@ -98,5 +110,16 @@
       <updated>1739264353338</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

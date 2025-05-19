@@ -16,13 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from university.views import index,page_not_found,server_error,access_error
+from university.views import page_not_found, server_error, access_error
+
 
 admin.site.site_header = "Панель администрирования проекта"
 admin.site.index_title = "Крутые новости универа"
 handler404 = page_not_found
 handler500 = server_error
 handler403 = access_error
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('university.urls')),
