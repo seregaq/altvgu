@@ -29,4 +29,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('university.urls')),
     path('', include('timetable.urls')),
+    path('', include('users.urls')),
+
 ]

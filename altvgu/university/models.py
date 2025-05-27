@@ -40,7 +40,6 @@ class Category(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=100)
     bio = models.TextField()
-
     def __str__(self):
         return self.bio
 
@@ -86,8 +85,23 @@ class News(models.Model):
     class Meta:
         verbose_name = "Новость"
         verbose_name_plural = "Новости"
+        permissions = [
+            ("can_publish", "Может публиковать новости"),
+            ("can_edit", "Может редактировать новости")
+        ]
 
     def save(self, *args, **kwargs):
         translit_title = translit_to_eng(self.title)
         self.slug = slugify(translit_title)
         super().save(*args, **kwargs)
+
+    class Visibility(models.IntegerChoices):
+        PUBLIC = 1, 'Видна всем'
+        AUTHENTICATED = 2, 'Только авторизованным'
+        PRIVATE = 3, 'Только авторам и администраторам'
+
+    visibility = models.IntegerField(
+        choices=Visibility.choices,
+        default=Visibility.PUBLIC,
+        verbose_name='Видимость'
+    )

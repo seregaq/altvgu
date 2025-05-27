@@ -21,7 +21,7 @@ urlpatterns = [
     path('cats/<slug:deps>/', views.department_by_slug, name='deps'),
     re_path(r'^archive/(?P<year>[0-9]{4})/', views.archive, name='archive'),
     path('archive/<date:dt>/', views.archive_date, name='date'),
-    path('login/', views.login, name='login'),
+    #path('login/', views.login, name='login'),
 ]
 
 if settings.DEBUG:

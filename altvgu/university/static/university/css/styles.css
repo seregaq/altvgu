@@ -245,3 +245,54 @@ footer {
     font-weight: bold;
     border-radius: 5px;
 }
+.messages {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.message {
+  pointer-events: auto;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+  min-width: 300px;
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.message.error {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.message.success {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.message.info {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

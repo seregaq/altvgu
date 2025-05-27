@@ -53,6 +53,10 @@ class AddPostForm(forms.ModelForm):
         label="URL",
         #validators=[validate_slug]
     )
+    visibility = forms.ChoiceField(
+        choices=News.Visibility.choices,
+        label="Видимость"
+    )
 
     def clean_title(self):
         title = self.cleaned_data['title']
@@ -64,7 +68,7 @@ class AddPostForm(forms.ModelForm):
 
     class Meta:
         model = News
-        fields = ['title', 'slug', 'content','photo', 'actual', 'category','author']
+        fields = ['title', 'slug', 'content','photo', 'actual', 'category','author', 'visibility']
 
 
 class NewsForm(forms.ModelForm):

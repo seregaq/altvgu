@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-'university.apps.UniversityConfig',
+    'university.apps.UniversityConfig',
     'timetable',
     'django_extensions',
+    'users.apps.UsersConfig',
+
 
 ]
 
@@ -64,6 +66,7 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'templates',
             BASE_DIR  / "timetable" /'templates',
+            BASE_DIR / "users" / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -90,6 +93,14 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = 'profile'
+LOGIN_URL = 'users:login'
+LOGOUT_REDIRECT_URL = 'users:login'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'users.authentication.EmailAuthBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -132,3 +143,16 @@ STATICFILES_DIRS = [BASE_DIR / "university/static",BASE_DIR / "timetable/static"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'users.User'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'manunyasa@yandex.ru'
+EMAIL_HOST_PASSWORD = 'xavpdygrltginrbd'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER

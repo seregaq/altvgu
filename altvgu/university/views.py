@@ -6,8 +6,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseForbidden
 from .models import News, UploadFiles
 from .forms import AddPostForm, FeedbackForm, UploadFileForm
-from django.core.paginator import Paginator
 from .utils import DataMixin
+from django.contrib import messages
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 
 
 cafs_db = [
@@ -41,7 +43,9 @@ class AboutPage(TemplateView):
     template_name = 'university/about.html'
     title_page = 'О сайте'
 
-class DeleteNews(DeleteView):
+class DeleteNews(PermissionRequiredMixin, DeleteView):
+    permission_required = 'university.delete_news'
+    raise_exception = True
     model = News
     template_name = 'university/delete.html'
     success_url = reverse_lazy('home')
@@ -50,18 +54,27 @@ class DeleteNews(DeleteView):
     title_page = 'Удаление статьи'
 
 
+
 class ShowNews(DataMixin, DetailView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['can_edit'] = user.has_perm('university.change_news')
+        context['can_delete'] = user.has_perm('university.delete_news')
+        return self.get_mixin_context(context, title=self.object.title)
+
     model = News
     template_name = 'university/news.html'
     context_object_name = 'post'
     slug_url_kwarg = 'post_slug'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return self.get_mixin_context(context, title=context['post'].title, cat_selected=1)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if not request.user.has_perm('university.view_news'):
+            messages.error(request, "У вас нет доступа к этой новости.")
 
-    def get_object(self, queryset=None):
-        return get_object_or_404(News.published, slug=self.kwargs[self.slug_url_kwarg])
+        return super().dispatch(request, *args, **kwargs)
+
 
 
 class AddNews(CreateView):
@@ -71,7 +84,9 @@ class AddNews(CreateView):
     title_page = 'Добавление статьи'
 
 
-class EditNews(UpdateView):
+class EditNews(PermissionRequiredMixin, UpdateView):
+    permission_required = 'university.change_news'
+    raise_exception = True
     model = News
     form_class = AddPostForm
     template_name = 'university/addpage.html'
@@ -124,8 +139,6 @@ def server_error(request):
 
 def access_error(request, exception):
     return HttpResponseForbidden('<h1>Ошибка доступа</h1>')
-
-
 
 def login(request):
     return HttpResponse("Авторизация")

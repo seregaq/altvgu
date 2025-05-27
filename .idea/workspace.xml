@@ -5,19 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9e312b1-81e5-48ba-abbf-c0a325cb8a92" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/altvgu/university/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/authentication.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/change_password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/password_reset_complete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/password_reset_confirm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/password_reset_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/password_reset_email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/password_reset_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/templates/users/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/altvgu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/altvgu/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/altvgu/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/altvgu/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/altvgu/templates/admin/base_siшte.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/addpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/altvgu/university/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/altvgu/university/static/university/css/admin_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/delete.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/static/university/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/static/university/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/altvgu/university/templates/university/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/altvgu/university/templates/university/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/templates/university/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/news.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/altvgu/university/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/views.py" afterDir="false" />
@@ -65,6 +72,8 @@
       <recent name="C:\Python\Projects\django\altvgu\university\templates\university" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Dev\altvgu\altvgu\users\templates\users" />
+      <recent name="C:\Dev\altvgu\altvgu\users\templates" />
       <recent name="C:\Dev\altvgu\altvgu" />
     </key>
   </component>

@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{post.title}}</h1>
+<h1>{{ post.title }}</h1>
 
 {% if post.photo %}
-<p ><img class="img-article-left" height="400" width="400"
-src="{{post.photo.url}}"></p>
+    <p>
+        <img class="img-article-left" height="400" width="400" src="{{ post.photo.url }}">
+    </p>
 {% endif %}
 
-{{post.content|linebreaks}}
+{{ post.content|linebreaks }}
+
+<hr>
+
+{% if can_edit %}
+    <a href="{% url 'edit_news' post_slug=post.slug %}" class="btn btn-primary">Редактировать</a>
+{% endif %}
+
+{% if can_delete %}
+    <a href="{% url 'delete_news' post_slug=post.slug %}" class="btn btn-danger">Удалить</a>
+{% endif %}
+
+
 {% endblock %}

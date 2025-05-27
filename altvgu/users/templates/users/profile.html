@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Профиль</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for f in form %}
+        <p><label for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+    <button type="submit">Сохранить</button>
+    <button type="button" onclick="window.location.href='{% url 'users:change_password' %}'">
+        Сменить пароль
+    </button>
+
+</form>
+{% endblock %}
+
