@@ -2,7 +2,7 @@ from django import forms
 from unicodedata import category
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
-from .models import News,Author, Category
+from .models import News,Author, Category, Comment
 from django.core.validators import validate_slug
 
 class FeedbackForm(forms.Form):
@@ -75,3 +75,12 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields = '__all__'
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Оставьте комментарий...'})
+        }

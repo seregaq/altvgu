@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9e312b1-81e5-48ba-abbf-c0a325cb8a92" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/altvgu/altvgu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/altvgu/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altvgu/university/templatetags/vote_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/templates/university/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/templates/university/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/altvgu/university/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/altvgu/university/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

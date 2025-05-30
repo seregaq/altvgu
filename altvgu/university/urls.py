@@ -21,6 +21,9 @@ urlpatterns = [
     path('cats/<slug:deps>/', views.department_by_slug, name='deps'),
     re_path(r'^archive/(?P<year>[0-9]{4})/', views.archive, name='archive'),
     path('archive/<date:dt>/', views.archive_date, name='date'),
+    path('vote/news/<int:news_id>/', views.vote_news, name='vote_news'),
+    path('vote/comment/<int:comment_id>/', views.vote_comment, name='vote_comment'),
+
     #path('login/', views.login, name='login'),
 ]
 

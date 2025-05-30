@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.conf import settings
 # Create your models here.
 
 
@@ -105,3 +106,36 @@ class News(models.Model):
         default=Visibility.PUBLIC,
         verbose_name='Видимость'
     )
+
+class Comment(models.Model):
+    news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField("Комментарий")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
+
+    def __str__(self):
+        return f'Комментарий от {self.author} к "{self.news}"'
+
+
+
+
+class NewsVote(models.Model):
+    news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='votes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    value = models.SmallIntegerField(choices=[(1, 'Like'), (-1, 'Dislike')])
+
+    class Meta:
+        unique_together = ('news', 'user')
+
+class CommentVote(models.Model):
+    comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='votes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    value = models.SmallIntegerField(choices=[(1, 'Like'), (-1, 'Dislike')])
+
+    class Meta:
+        unique_together = ('comment', 'user')

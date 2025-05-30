@@ -1,14 +1,16 @@
 from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView, TemplateView
 from django.views import View
 from django.views.generic.edit import DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseForbidden
-from .models import News, UploadFiles
-from .forms import AddPostForm, FeedbackForm, UploadFileForm
+from .models import News, Comment, CommentVote, NewsVote
+from .forms import AddPostForm, FeedbackForm, CommentForm
 from .utils import DataMixin
 from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views.decorators.http import require_POST
+from django.utils.http import urlencode
 
 
 
@@ -24,6 +26,8 @@ class HomePage(DataMixin, ListView):
     template_name = 'university/index.html'
     context_object_name = 'posts'
 
+    def get_queryset(self):
+        return News.published.filter(actual=True).order_by('-published_date')  # или .order_by('-id')
 
     def get_queryset(self):
         return News.published.filter(actual=True)
@@ -53,31 +57,90 @@ class DeleteNews(PermissionRequiredMixin, DeleteView):
     context_object_name = 'post'
     title_page = 'Удаление статьи'
 
+@require_POST
+def vote_news(request, news_id):
+    if not request.user.is_authenticated:
+        return redirect(f"{reverse('users:login')}?next={request.META.get('HTTP_REFERER', '/')}")
+
+    news = get_object_or_404(News, pk=news_id)
+    value = int(request.POST.get('value'))
+    NewsVote.objects.update_or_create(news=news, user=request.user, defaults={'value': value})
+    return redirect(news.get_absolute_url())
+
+
+@require_POST
+def vote_comment(request, comment_id):
+    if not request.user.is_authenticated:
+        return redirect(f"{reverse('users:login')}?next={request.META.get('HTTP_REFERER', '/')}")
+
+    comment = get_object_or_404(Comment, pk=comment_id)
+    value = int(request.POST.get('value'))
+    CommentVote.objects.update_or_create(comment=comment, user=request.user, defaults={'value': value})
+    return redirect(comment.news.get_absolute_url())
 
 
 class ShowNews(DataMixin, DetailView):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = self.request.user
-        context['can_edit'] = user.has_perm('university.change_news')
-        context['can_delete'] = user.has_perm('university.delete_news')
-        return self.get_mixin_context(context, title=self.object.title)
-
     model = News
     template_name = 'university/news.html'
     context_object_name = 'post'
     slug_url_kwarg = 'post_slug'
 
+    def get_object(self, queryset=None):
+        return get_object_or_404(News.published, slug=self.kwargs[self.slug_url_kwarg])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['can_edit'] = user.has_perm('university.change_news')
+        context['can_delete'] = user.has_perm('university.delete_news')
+        context['comments'] = self.object.comments.all()
+        context['form'] = CommentForm()
+        context['like_count'] = self.object.votes.filter(value=1).count()
+        context['dislike_count'] = self.object.votes.filter(value=-1).count()
+        return self.get_mixin_context(context, title=self.object.title)
+
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
+        if not request.user.is_authenticated:
+            messages.error(request, "Авторизуйтесь, чтобы просмотреть новость.")
+            return redirect(f"{reverse_lazy('users:login')}?next={request.path}")
+
         if not request.user.has_perm('university.view_news'):
             messages.error(request, "У вас нет доступа к этой новости.")
+            return redirect(f"{reverse_lazy('home')}?next={request.path}")
 
         return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = CommentForm(request.POST)
+
+        if not request.user.is_authenticated:
+            messages.error(request, "Авторизуйтесь, чтобы оставить комментарий.")
+            return redirect(f"{reverse_lazy('users:login')}?next={request.path}")
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.news = self.object
+            comment.author = request.user
+            comment.save()
+            messages.success(request, "Комментарий добавлен.")
+            return redirect(self.object.get_absolute_url())
+
+        context = self.get_context_data()
+        context['form'] = form
+        return self.render_to_response(context)
+
 
 
 
 class AddNews(CreateView):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm('university.add_news'):
+            messages.error(request, "Недостаточно прав.")
+            return redirect(f"{reverse_lazy('home')}?next={request.path}")
+        return super().dispatch(request, *args, **kwargs)
+
     form_class = AddPostForm
     template_name = 'university/addpage.html'
     success_url = reverse_lazy('home')
@@ -108,6 +171,9 @@ class FeedbackView(FormView):
             <p><strong>Сообщение:</strong> {form.cleaned_data['message']}</p>
             <br><a href="/feedback/">Отправить ещё один отзыв</a>
         """)
+
+
+
 
 
 def department(request, dep_id):

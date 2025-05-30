@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load vote_filters %}
 
 {% block content %}
 <h1>{{ post.title }}</h1>
@@ -19,6 +20,54 @@
 
 {% if can_delete %}
     <a href="{% url 'delete_news' post_slug=post.slug %}" class="btn btn-danger">Удалить</a>
+{% endif %}
+
+<p>
+  Оценки: 👍 {{ like_count }} | 👎 {{ dislike_count }}
+</p>
+
+<form method="post" action="{% url 'vote_news' post.id %}">
+  {% csrf_token %}
+  <button type="submit" name="value" value="1">👍 Лайк</button>
+  <button type="submit" name="value" value="-1">👎 Дизлайк</button>
+</form>
+
+<h2>Комментарии</h2>
+
+
+{% for comment in comments %}
+  <div class="comment">
+    <p>
+      <strong>{{ comment.author }}</strong>
+      <span style="color: #666;">— {{ comment.created_at|date:"d.m.Y H:i" }}</span>
+    : {{ comment.content }}</p>
+    <p>
+
+        Оценки: 👍 {{ comment.votes.all|likes_count }} | 👎 {{ comment.votes.all|dislikes_count }}
+
+    </p>
+
+    <form method="post" action="{% url 'vote_comment' comment.id %}">
+      {% csrf_token %}
+      <button type="submit" name="value" value="1">👍</button>
+      <button type="submit" name="value" value="-1">👎</button>
+    </form>
+  </div>
+
+
+{% empty %}
+    <p>Комментариев пока нет.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <h3>Оставить комментарий</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'users:login' %}?next={{ request.path }}">Войдите</a>, чтобы оставить комментарий.</p>
 {% endif %}
 
 
