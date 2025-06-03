@@ -31,7 +31,7 @@
         <nav>
             <ul class="menu">
                 <li><a href="{% url 'home' %}">Главная</a></li>
-                <li><a href="{% url 'about' %}">О сайте</a></li>
+                <li><a href="{% url 'about' %}">О ВУЗе</a></li>
                 <li><a href="{% url 'contact' %}">Контакты</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'users:profile' %}">Профиль ( {{ user.username }} )</a></li>

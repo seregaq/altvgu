@@ -24,7 +24,6 @@ urlpatterns = [
     path('vote/news/<int:news_id>/', views.vote_news, name='vote_news'),
     path('vote/comment/<int:comment_id>/', views.vote_comment, name='vote_comment'),
 
-    #path('login/', views.login, name='login'),
 ]
 
 if settings.DEBUG:

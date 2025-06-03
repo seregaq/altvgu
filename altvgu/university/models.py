@@ -96,16 +96,7 @@ class News(models.Model):
         self.slug = slugify(translit_title)
         super().save(*args, **kwargs)
 
-    class Visibility(models.IntegerChoices):
-        PUBLIC = 1, 'Видна всем'
-        AUTHENTICATED = 2, 'Только авторизованным'
-        PRIVATE = 3, 'Только авторам и администраторам'
 
-    visibility = models.IntegerField(
-        choices=Visibility.choices,
-        default=Visibility.PUBLIC,
-        verbose_name='Видимость'
-    )
 
 class Comment(models.Model):
     news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='comments')

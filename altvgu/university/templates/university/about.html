@@ -1,40 +1,18 @@
 {% extends 'base.html' %}
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--         <title>{{title}}</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<ul>-->
-<!--<li><a href="{% url 'home' %}">Главная</a></li>-->
-<!--{% for m in menu %}-->
-<!--{% if not forloop.last %}<li>{% else %}<li-->
-<!--class="last">{% endif %}-->
-<!--         <a href="{% url m.url_name %}">{{m.title}}</a>-->
-<!--</li>-->
-<!--{% endfor %}-->
-<!--</ul>-->
-
-<!--<h1>{{title}}</h1>-->
-<!--</body>-->
-<!--</html>-->
-
-
-
-
 
 {% block title %}О сайте{% endblock %}
 
 {% block content %}
-    <h1>{{ title|capfirst }}</h1>
+    <h1>О ВУЗе</h1>
+    <p>Если хотите стать частью нашего коллектива, прикрепляйте свои резюме скорее!</p>
+
     <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
         <p ><input type="file" name="file"></p>
     <button type="submit">Отправить</button>
 </form>
-    <p>Здесь вы найдете информацию о нашем университете, преподавателях и учебных программах.</p>
+
 {% endblock %}
 
 
